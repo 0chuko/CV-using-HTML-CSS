@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Coldplay Ticket | Ticketmaster UK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #026cdf;
+            --secondary: #1a1a1a;
+            --accent: #f90052;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --dark: #212529;
+            --gold: #ffd700;
+            --silver: #c0c0c0;
+            --bronze: #cd7f32;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 8px;
+            color: var(--accent);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .user-name {
+            font-weight: 600;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-menu a.active {
+            background: var(--primary);
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+        }
+        
+        /* Ticket Section */
+        .ticket-section {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .section-title {
+            font-size: 32px;
+            background: linear-gradient(to right, var(--gold), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+        
+        .ticket-status {
+            background: var(--accent);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        /* Event Info */
+        .event-info {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .event-image {
+            flex: 0 0 300px;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .event-details {
+            flex: 1;
+        }
+        
+        .event-title {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: var(--gold);
+            font-weight: 800;
+        }
+        
+        .event-subtitle {
+            font-size: 20px;
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+        
+        .event-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .meta-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .meta-label {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .meta-value {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        /* Ticket Card */
+        .ticket-card {
+            background: linear-gradient(135deg, #0c2461, #1e3799);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            margin-top: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .ticket-header {
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ticket-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+        }
+        
+        .ticket-type {
+            background: var(--gold);
+            color: black;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .ticket-body {
+            display: flex;
+            padding: 30px;
+        }
+        
+        .ticket-details {
+            flex: 1;
+            padding-right: 30px;
+            border-right: 1px dashed rgba(255, 255, 255, 0.3);
+        }
+        
+        .ticket-row {
+            display: flex;
+            margin-bottom: 25px;
+        }
+        
+        .ticket-label {
+            flex: 0 0 120px;
+            color: #aaa;
+        }
+        
+        .ticket-value {
+            flex: 1;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .ticket-qr {
+            flex: 0 0 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .qr-code {
+            width: 130px;
+            height: 130px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .qr-code i {
+            font-size: 60px;
+            color: #333;
+        }
+        
+        .ticket-id {
+            font-size: 12px;
+            color: #ccc;
+        }
+        
+        .ticket-footer {
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price-tag {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .ticket-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0258b8;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(2, 108, 223, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(2, 108, 223, 0.1);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .card {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .card-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--gold);
+        }
+        
+        .venue-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .venue-map {
+            height: 200px;
+            background: #2c3e50;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .venue-map i {
+            font-size: 50px;
+            color: #ccc;
+        }
+        
+        .venue-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .info-row {
+            display: flex;
+        }
+        
+        .info-label {
+            flex: 0 0 100px;
+            color: #aaa;
+        }
+        
+        .info-value {
+            flex: 1;
+        }
+        
+        .transfer-card {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .transfer-options {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .transfer-option {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .transfer-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .transfer-option i {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .transfer-option span {
+            font-size: 14px;
+        }
+        
+        .event-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .timeline-icon {
+            flex: 0 0 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        .timeline-time {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-desc {
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .event-info {
+                flex-direction: column;
+            }
+            
+            .event-image {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .ticket-body {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .ticket-details {
+                padding-right: 0;
+                border-right: none;
+                border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+                padding-bottom: 30px;
+                margin-bottom: 30px;
+            }
+            
+            .ticket-footer {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <a href="#" class="logo">
+                <i class="fas fa-ticket-alt"></i>
+                Ticketmaster UK
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-calendar"></i> My Events</a>
+                <a href="#" class="active"><i class="fas fa-ticket"></i> My Tickets</a>
+                <a href="#"><i class="fas fa-user"></i> Account</a>
+            </nav>
+            
+            <div class="user-info">
+                <div class="user-avatar">JS</div>
+                <div class="user-name">John Smith</div>
+                <a href="#" class="btn btn-outline"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Ticket Section -->
+            <div class="ticket-section">
+                <div class="section-header">
+                    <h2 class="section-title">Your Concert Ticket</h2>
+                    <div class="ticket-status">Confirmed</div>
+                </div>
+                
+                <div class="event-info">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Coldplay Concert">
+                    </div>
+                    
+                    <div class="event-details">
+                        <h1 class="event-title">COLDPLAY</h1>
+                        <div class="event-subtitle">Music of the Spheres World Tour</div>
+                        
+                        <div class="event-meta">
+                            <div class="meta-card">
+                                <div class="meta-label">Date & Time</div>
+                                <div class="meta-value">Sat, 15 Jul 2023 • 19:30</div>
+                            </div>
+                            <div class="meta-card">
+                                <div class="meta-label">Venue</div>
+                                <div class="meta-value">Wembley Stadium</div>
+                            </div>
+                            <div class="meta-card">
+                                <div class="meta-label">Doors Open</div>
+                                <div class="meta-value">17:30</div>
+                            </div>
+                            <div class="meta-card">
+                                <div class="meta-label">Show Duration</div>
+                                <div class="meta-value">Approx. 2.5 hours</div>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #ccc; line-height: 1.8;">
+                            Experience Coldplay's spectacular Music of the Spheres World Tour at the iconic Wembley Stadium. 
+                            This immersive concert experience features stunning visuals, pyrotechnics, and a setlist spanning 
+                            their greatest hits and latest album.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Ticket Card -->
+                <div class="ticket-card">
+                    <div class="ticket-header">
+                        <div class="ticket-logo">Ticketmaster</div>
+                        <div class="ticket-type">PREMIUM SEATING</div>
+                    </div>
+                    
+                    <div class="ticket-body">
+                        <div class="ticket-details">
+                            <div class="ticket-row">
+                                <div class="ticket-label">Event</div>
+                                <div class="ticket-value">Coldplay: Music of the Spheres Tour</div>
+                            </div>
+                            
+                            <div class="ticket-row">
+                                <div class="ticket-label">Date & Time</div>
+                                <div class="ticket-value">Saturday, July 15, 2023 at 7:30 PM</div>
+                            </div>
+                            
+                            <div class="ticket-row">
+                                <div class="ticket-label">Venue</div>
+                                <div class="ticket-value">Wembley Stadium, London</div>
+                            </div>
+                            
+                            <div class="ticket-row">
+                                <div class="ticket-label">Section</div>
+                                <div class="ticket-value">A2</div>
+                            </div>
+                            
+                            <div class="ticket-row">
+                                <div class="ticket-label">Row</div>
+                                <div class="ticket-value">12</div>
+                            </div>
+                            
+                            <div class="ticket-row">
+                                <div class="ticket-label">Seat</div>
+                                <div class="ticket-value">107, 108</div>
+                            </div>
+                            
+                            <div class="ticket-row">
+                                <div class="ticket-label">Ticket Holder</div>
+                                <div class="ticket-value">John Smith & Guest</div>
+                            </div>
+                        </div>
+                        
+                        <div class="ticket-qr">
+                            <div class="qr-code">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <div class="ticket-id">#TM-UK-7845-2023</div>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-footer">
+                        <div class="price-tag">£249.99 x 2</div>
+                        <div class="ticket-actions">
+                            <button class="btn btn-outline"><i class="fas fa-download"></i> Download</button>
+                            <button class="btn btn-primary"><i class="fas fa-share-alt"></i> Transfer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="card">
+                    <h3 class="card-title">Venue Information</h3>
+                    <div class="venue-details">
+                        <div class="venue-map">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div class="venue-info">
+                            <div class="info-row">
+                                <div class="info-label">Address:</div>
+                                <div class="info-value">Wembley Stadium, London HA9 0WS, UK</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Capacity:</div>
+                                <div class="info-value">90,000</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Parking:</div>
+                                <div class="info-value">Pre-booked parking available</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Public Transport:</div>
+                                <div class="info-value">Wembley Park Station (Jubilee, Metropolitan lines)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Ticket Options</h3>
+                    <div class="transfer-card">
+                        <p>Manage your tickets or transfer to friends</p>
+                        <div class="transfer-options">
+                            <div class="transfer-option">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Add to Wallet</span>
+                            </div>
+                            <div class="transfer-option">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email Ticket</span>
+                            </div>
+                            <div class="transfer-option">
+                                <i class="fas fa-user-friends"></i>
+                                <span>Transfer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Event Timeline</h3>
+                    <div class="event-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-door-open"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">17:30</div>
+                                <div class="timeline-desc">Doors Open</div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">19:00</div>
+                                <div class="timeline-desc">Opening Act: H.E.R.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">20:15</div>
+                                <div class="timeline-desc">Coldplay Performance Starts</div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">22:45</div>
+                                <div class="timeline-desc">Grand Finale with Fireworks</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <p>© 2023 Ticketmaster UK Limited. This ticket is valid only for the specified event and seat. Resale restrictions apply.</p>
+            <p style="margin-top: 10px;">Need help? Contact Ticketmaster Customer Support at support@ticketmaster.co.uk or call +44 161 637 1337</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Add animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate the ticket card on load
+            const ticketCard = document.querySelector('.ticket-card');
+            setTimeout(() => {
+                ticketCard.style.transform = 'translateY(0)';
+                ticketCard.style.opacity = '1';
+            }, 300);
+            
+            // Add hover effect to transfer options
+            const transferOptions = document.querySelectorAll('.transfer-option');
+            transferOptions.forEach(option => {
+                option.addEventListener('mouseenter', () => {
+                    option.style.transform = 'translateY(-5px)';
+                });
+                
+                option.addEventListener('mouseleave', () => {
+                    option.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Simulate ticket download
+            const downloadBtn = document.querySelector('.btn-outline');
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+                this.style.background = '#2ecc71';
+                this.style.borderColor = '#2ecc71';
+                
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-download"></i> Download';
+                    this.style.background = '';
+                    this.style.borderColor = '';
+                }, 2000);
+            });
+            
+            // Add QR code animation
+            const qrCode = document.querySelector('.qr-code');
+            setInterval(() => {
+                qrCode.style.transform = 'scale(1.03)';
+                setTimeout(() => {
+                    qrCode.style.transform = 'scale(1)';
+                }, 300);
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
